@@ -44,3 +44,5 @@ def get_all(file):
         for row in reader:
             x.append(row)
         return x
+
+
