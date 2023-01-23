@@ -15,19 +15,7 @@
             </div>
         </div>
     </nav>
-        
-        {%for me in melons:%}
-            <p>{{me['common_name']}}</p>
-            <p>${{me['price']}}</p>
-            <p>{{me['color']}}</p>
-            {%if me['seedless']== 'True':%}
-                <p>Seedless!</p>
-                {%else%}
-                <p>Has Seeds</p>
-            {%endif%}
-            <img src="{{me['image_url']}}" alt="ig">
-            <button>Buy</button>
-        {%endfor%}
+ 
   <div class="container">
 
     <!-- This is where the main content goes. -->

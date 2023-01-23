@@ -10,15 +10,16 @@ def home():
 
 @app.route('/melons')
 def show_all():
-   return render_template('base.html', melons = get_all('melons.csv'))
+   return render_template('melons.html', melons = get_all('melons.csv'))
 
 @app.route('/melon/<melon_id>')
 def melon_details(melon_id):
-   return render_template('id.html',mels = get_by_id(melon_id))
+   return render_template('id.html', mels = get_by_id(melon_id))
 
 @app.route('/add_to_cart/<melon_id>')
 def add_to_cart(melon_id):
    return f"{melon_id} added to cart."
+
 @app.route('/cart')
 def cart():
    render_template('cart.html', )
