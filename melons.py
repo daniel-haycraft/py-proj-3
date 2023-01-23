@@ -36,5 +36,11 @@ def get_by_id(melon_id):
     return melon_dict[melon_id]
 def get_all_values():
     return list(melon_dict.values())
-print(melon_dict['scab'])
-print(get_all_values())
+
+def get_all(file):
+    x = []
+    with open(file) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            x.append(row)
+        return x

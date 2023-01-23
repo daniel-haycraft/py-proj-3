@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
-
+<link rel="stylesheet" href="/static/styles.css">
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
@@ -15,7 +15,15 @@
             </div>
         </div>
     </nav>
-
+        {%for me in melons:%}
+            <p>{{me['common_name']}}</p>
+            <p>${{me['price']}}</p>
+            <p>{{me['color']}}</p>
+            {%if me['seedless']:%}
+                <p>Seedless!</p>
+            {%endif%}
+            <img src="{{me['image_url']}}" alt="igaf">
+        {%endfor%}
   <div class="container">
 
     <!-- This is where the main content goes. -->
