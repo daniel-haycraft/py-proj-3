@@ -1,4 +1,16 @@
-img {
-    height: 400px;
-    width: 400px;
+
+
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.melon-image{
+    height: 300px;
+    width: 300px;
+}
+
+#melon-list {
+    
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 35px;
 }

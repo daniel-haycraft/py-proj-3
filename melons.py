@@ -6,7 +6,7 @@ class Melon:
         self.melon_id = melon_id
         self.common_name = common_name
         self.price = price
-        self.img_url = image_url
+        self.image_url = image_url
         self.color = color
         self.seedless = seedless
     def __repr__(self):
@@ -16,7 +16,7 @@ class Melon:
         )
     def price_string(self):
         """displaying price of melon formated as $x.xx"""
-        return f"<{self.price:.2f}>"
+        return f"${self.price:.2f}"
 
 with open ('melons.csv') as csvfile:
     reader = csv.DictReader(csvfile)
@@ -36,9 +36,10 @@ def get_by_id(melon_id):
     return melon_dict[melon_id]
 
 def get_all_values():
+    print(melon_dict.values())
     return list(melon_dict.values())
 
-def get_all(file):
+def get_all_csv(file):
     x = []
     with open(file) as csvfile:
         reader = csv.DictReader(csvfile)
