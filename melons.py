@@ -36,7 +36,6 @@ def get_by_id(melon_id):
     return melon_dict[melon_id]
 
 def get_all_values():
-    print(melon_dict.values())
     return list(melon_dict.values())
 
 def get_all_csv(file):
