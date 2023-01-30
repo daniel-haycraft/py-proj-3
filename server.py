@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, validators
 from wtforms.validators import DataRequired
 
-from forms import LoginForm
+from forms import LoginForm, QuantityForm
 import melons
 import customers
 
@@ -36,6 +36,8 @@ def melon_details(melon_id):
 
 @app.route('/add_to_cart/<melon_id>')
 def add_to_cart(melon_id):
+   qform = QuantityForm()
+
 
    if 'cart' not in session:
       session['cart'] = {}
@@ -51,25 +53,39 @@ def add_to_cart(melon_id):
    return redirect('/cart')
 
 
-@app.route('/cart')
+@app.route('/cart', methods = ["GET", 'POST'])
 def cart():
+   qform = QuantityForm()
+   
    order_total = 0
    cart_melons = []
    cart = session.get("cart", {})
    if 'username' not in session:
       flash('you must login first')
       return redirect('/login')
-   for melon_id, quantity in cart.items():
-         melon = melons.get_by_id(melon_id)
+   
+   
+   for melon_id, initial in cart.items():
 
-         total_price = quantity * melon.price
-         order_total += total_price
+      melon = melons.get_by_id(melon_id)
 
-         melon.quantity = quantity
-         melon.total_price = total_price
+      
+      initial += int(qform.choicy.data or 0)
+      
+      total_price = initial* melon.price
 
-         cart_melons.append(melon)
-   return render_template('cart.html', cart_melons = cart_melons, order_total = order_total)
+      order_total += total_price
+
+      melon.total_price = total_price
+      initial + int(qform.choicy.data or 0)
+      melon.initial = initial
+      cart_melons.append(melon)
+      
+
+   return render_template('cart.html', cart_melons = cart_melons,  qform = qform, order_total = order_total)
+         
+
+
 
 @app.route("/empty-cart")
 def empty_cart():
@@ -80,6 +96,7 @@ def empty_cart():
 def login():
    form = LoginForm(request.form)
    if form.validate_on_submit():
+      print(form.username.data)
       username = form.username.data
       password = form.password.data
 
